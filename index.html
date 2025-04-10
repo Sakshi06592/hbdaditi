@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Happy Birthday Aditi 👑</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     * {
       box-sizing: border-box;
@@ -113,7 +114,8 @@
   <!-- Page 1 -->
   <div class="page active" id="page1">
     <div id="countdown"></div>
-    <h1>to goooo 👑</h1>
+    <h1>to gooooooo 👑</h1>
+    <div class="footer">of being the queen you areeeee 💖</div>
     <div>
       <button onclick="goToPage(2)">Next →</button>
     </div>
@@ -121,9 +123,8 @@
 
   <!-- Page 2 -->
   <div class="page" id="page2">
-    <h1>You've been slaying for</h1>
     <div class="bitch-count" id="bitchCountdown"></div>
-    <h1>😚😚</h1>
+    <h1>of being a bitch 😚😚</h1>
     <div>
       <button onclick="goToPage(1)">← Back</button>
       <button onclick="goToPage(3)">Next →</button>
@@ -133,7 +134,7 @@
   <!-- Page 3 -->
   <div class="page" id="page3">
     <h1>more pages on the wayyyyyyy 💌</h1>
-    <p style="max-width: 90%; margin-top: 1rem; color: #6b5c85;">(I love you more huhhhh 😤😤😤😤)</p>
+    <p style="max-width: 90%; margin-top: 1rem; color: #6b5c85;">(you already know it’s gonna be iconic 😌)</p>
     <div>
       <button onclick="goToPage(2)">← Back</button>
     </div>
@@ -175,8 +176,31 @@
 
     function goToPage(n) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.getElementById('page' + n).classList.add('active');
+      const nextPage = document.getElementById('page' + n);
+      nextPage.classList.add('active');
+
+      // Launch confetti only when landing on page 1
+      if (n === 1) {
+        setTimeout(() => {
+          confetti({
+            particleCount: 150,
+            spread: 80,
+            origin: { y: 0.6 }
+          });
+        }, 500);
+      }
     }
+
+    // Initial confetti on load
+    window.onload = () => {
+      setTimeout(() => {
+        confetti({
+          particleCount: 150,
+          spread: 80,
+          origin: { y: 0.6 }
+        });
+      }, 500);
+    };
   </script>
 </body>
 </html>

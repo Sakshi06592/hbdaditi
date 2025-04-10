@@ -109,13 +109,13 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- Page 1 -->
   <div class="page active" id="page1">
     <div id="countdown"></div>
     <h1>to gooooooo 👑</h1>
-    <div class="footer">of being the queen you areeeee 💖</div>
     <div>
       <button onclick="goToPage(2)">Next →</button>
     </div>
@@ -134,13 +134,30 @@
   <!-- Page 3 -->
   <div class="page" id="page3">
     <h1>more pages on the wayyyyyyy 💌</h1>
-    <p style="max-width: 90%; margin-top: 1rem; color: #6b5c85;">(you already know it’s gonna be iconic 😌)</p>
+    <p style="max-width: 90%; margin-top: 1rem; color: #6b5c85;">(I love you more huhhh 😤😤)</p>
     <div>
       <button onclick="goToPage(2)">← Back</button>
     </div>
   </div>
 
   <script>
+    function goToPage(n) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      const nextPage = document.getElementById('page' + n);
+      nextPage.classList.add('active');
+
+      if (n === 1) {
+        setTimeout(() => {
+          confetti({
+            particleCount: 150,
+            spread: 80,
+            origin: { y: 0.6 }
+          });
+        }, 500);
+      }
+    }
+
+    // Countdown logic
     const countdown = document.getElementById("countdown");
     const bitchCountdown = document.getElementById("bitchCountdown");
 
@@ -174,23 +191,6 @@
     setInterval(updateCountdowns, 1000);
     updateCountdowns();
 
-    function goToPage(n) {
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      const nextPage = document.getElementById('page' + n);
-      nextPage.classList.add('active');
-
-      // Launch confetti only when landing on page 1
-      if (n === 1) {
-        setTimeout(() => {
-          confetti({
-            particleCount: 150,
-            spread: 80,
-            origin: { y: 0.6 }
-          });
-        }, 500);
-      }
-    }
-
     // Initial confetti on load
     window.onload = () => {
       setTimeout(() => {
@@ -202,5 +202,6 @@
       }, 500);
     };
   </script>
+
 </body>
 </html>
